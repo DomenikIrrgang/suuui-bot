@@ -147,9 +147,13 @@ if (!apply) {
   log("\nChannels:");
   for (const cat of plan.categories) {
     log(`  ${channels.some((c) => c.type === 4 && sameName(c.name, cat.name)) ? "keep  " : "create"} [${cat.name}]`);
-    for (const ch of cat.channels) log(`    ${findChannel(ch.name, ch.type) ? "keep  " : "create"} ${ch.type === "voice" || ch.type === "stage" ? "🔊" : "#"}${ch.name} (${ch.type})`);
+    for (const ch of cat.channels) {
+      const status = findChannel(ch.name, ch.type) ? "keep  " : ch.was && findChannel(ch.was, ch.type) ? `rename ${ch.was} →` : "create";
+      log(`    ${status} ${ch.type === "voice" || ch.type === "stage" ? "🔊" : "#"}${ch.name} (${ch.type})`);
+    }
   }
-  const planned = new Set([...plan.categories.map((c) => c.name.toLowerCase()), ...allChannels().map((c) => c.name.toLowerCase())]);
+  const planned = new Set([...plan.categories.map((c) => c.name.toLowerCase()),
+    ...allChannels().flatMap((c) => [c.name, c.was].filter(Boolean).map((n) => n.toLowerCase()))]);
   const extra = channels.filter((c) => !planned.has(c.name.toLowerCase()));
   if (extra.length) log(`\nNot in the plan${prune ? " (deleted with --prune)" : " (kept; --prune deletes them)"}: ${extra.map((c) => c.name).join(", ")}`);
   log("\nThen: messages, AutoMod, onboarding, welcome screen, webhooks" + (withGithub ? " + GitHub repo hooks" : "") + ", invite.");
@@ -202,6 +206,12 @@ async function ensureChannels(filter) {
     channelIds[cat.name] = parent.id;
     for (const ch of cat.channels.filter(filter)) {
       let c = findChannel(ch.name, ch.type);
+      // A channel renamed in the plan keeps its messages: `was` names it before the rename.
+      const old = !c && ch.was && findChannel(ch.was, ch.type);
+      if (old) {
+        c = Object.assign(old, await api("PATCH", `/channels/${old.id}`, { name: ch.name }));
+        log(`  renamed ${ch.was} → ${ch.name}`);
+      }
       if (!c) {
         c = await api("POST", `/guilds/${guildId}/channels`, {
           name: ch.name, type: TYPES[ch.type], parent_id: parent.id, permission_overwrites: overwrites(cat.overwrites, ch.overwrites),

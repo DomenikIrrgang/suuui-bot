@@ -80,7 +80,7 @@ const areaTags = ["Unit & group frames", "Nameplates", "Action bars", "Cooldown 
 // type: text | announcement | forum | voice | stage. Categories keep their overwrites; channels add their own on top.
 export const categories = [
   {
-    name: "◆ Start here", overwrites: readOnly,
+    name: "📢 ◆ INFORMATION ◆ 📢", overwrites: readOnly,
     channels: [
       { name: "welcome", type: "text", topic: "What SuuUI is, where to get it, and how this server works." },
       { name: "rules", type: "text", topic: "Read these before you post." },
@@ -90,7 +90,7 @@ export const categories = [
     ],
   },
   {
-    name: "◆ SuuUI",
+    name: "💬 ◆ COMMUNITY ◆ 💬",
     channels: [
       { name: "general", type: "text", topic: "Talk about SuuUI. Questions go to <#help>, bugs to <#bug-reports>." },
       {
@@ -111,7 +111,7 @@ export const categories = [
     ],
   },
   {
-    name: "◆ Support",
+    name: "🆘 ◆ SUPPORT ◆ 🆘",
     channels: [
       {
         name: "help", type: "forum", requireTag: true,
@@ -127,10 +127,22 @@ export const categories = [
     ],
   },
   {
-    name: "◆ Testing", overwrites: testersOnly,
+    name: "🛠️ ◆ TESTING ◆ 🛠️", overwrites: testersOnly,
     channels: [
       { name: "test-builds", type: "text", overwrites: readOnly, topic: "New test builds, what changed, and what to check." },
-      { name: "test-feedback", type: "text", topic: "What you found in the latest test build. Bugs still get a post in <#bug-reports>." },
+      // Kept apart from #bug-reports and #suggestions, which are about released versions.
+      {
+        name: "test-reports", type: "forum", requireTag: true, reaction: "👍",
+        topic: "Bugs and feedback for test builds, one per post. Released versions go in <#bug-reports> and <#suggestions>.\n\n" +
+          "Start the title with the build, e.g. \"[0.4.0-beta.6] Raid frames lose range fading\". Please include:\n" +
+          "1. What happened, and what you expected (for feedback: what you'd change, and why)\n" +
+          "2. How to make it happen again\n3. Where: open world, dungeon, raid; in combat or not\n" +
+          "4. `/suu version`, and `/suu errors` if it lists anything\n\n" +
+          "Seeing the same thing? Add a 👍 and anything new you found. When a build ships, reports that still apply move to <#bug-reports>.",
+        tags: ["Bug", "Feedback", "Regression", "Lua error", "Combat / taint"],
+        modTags: ["Confirmed", "Fixed in next build", "Can't reproduce", "Working as intended", "Duplicate"],
+      },
+      { name: "test-chat", was: "test-feedback", type: "text", topic: "Talk about the current test build. Bugs and feedback get their own post in <#test-reports>." },
     ],
   },
   {
@@ -143,7 +155,7 @@ export const categories = [
     ],
   },
   {
-    name: "◆ Azeroth",
+    name: "🌐 ◆ AZEROTH ◆ 🌐",
     channels: [
       { name: "wow-forever", type: "text", topic: "WoW Forever itself: patches, classes, dungeons, raids." },
       { name: "looking-for-group", type: "text", topic: "Find a group. Say your realm, faction, level and role." },
@@ -160,7 +172,7 @@ export const categories = [
     ],
   },
   {
-    name: "◆ Staff", overwrites: staffOnly,
+    name: "⛔ ◆ STAFF ◆ ⛔", overwrites: staffOnly,
     channels: [
       { name: "mod-chat", type: "text", topic: "Moderators and developers." },
       { name: "mod-log", type: "text", topic: "AutoMod alerts, joins and Discord safety alerts." },
@@ -238,7 +250,8 @@ export const messages = {
       description:
         "Test builds are posted here before they ship. Each post says what changed and what to check.\n\n" +
         "1. Install the build and `/reload`.\n2. Check what the post asks you to check, in the content it names.\n" +
-        "3. Report in <#test-feedback>. If something is broken, also post in <#bug-reports> with `/suu version` and `/suu errors`.\n\n" +
+        "3. Found a bug, or have feedback? Open a post in <#test-reports> with the build in its title. Talk it over in <#test-chat>.\n\n" +
+        "Reports stay here until the build ships; whatever still applies then moves to <#bug-reports>.\n\n" +
         "Builds can break things. Keep a profile export so you can go back.",
     },
   ]],
