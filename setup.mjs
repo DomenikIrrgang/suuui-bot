@@ -384,7 +384,7 @@ const defaultChannelIds = () => {
   const names = plan.onboarding.defaultChannels === "public"
     ? allChannels().filter((ch) => !hidden(ch.category.overwrites) && !hidden(ch.overwrites)).map((ch) => ch.name)
     : plan.onboarding.defaultChannels;
-  return names.map((n) => channelIds[n]).filter(Boolean);
+  return names.filter((n) => !plan.onboarding.notDefault?.includes(n)).map((n) => channelIds[n]).filter(Boolean);
 };
 
 await step("Onboarding", async () => {
@@ -393,9 +393,9 @@ await step("Onboarding", async () => {
   const snowflake = () => ((BigInt(Date.now() - 1420070400000) << 22n) + BigInt(n++)).toString();
   const prompts = plan.onboarding.prompts.map((p) => ({
     id: snowflake(), type: 0, title: p.title, single_select: !p.multi, required: !!p.required, in_onboarding: true,
-    options: p.options.map(([title, role, emoji, description]) => ({
+    options: p.options.map(([title, role, emoji, description, channels = []]) => ({
       id: snowflake(), title, description: description ?? null, emoji_name: emoji ?? null,
-      role_ids: role ? [roleIds[role]] : [], channel_ids: [],
+      role_ids: role ? [roleIds[role]] : [], channel_ids: channels.map((c) => channelIds[c]).filter(Boolean),
     })),
   }));
   await api("PUT", `/guilds/${guildId}/onboarding`, {

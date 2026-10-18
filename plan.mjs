@@ -275,6 +275,8 @@ export const automod = {
 export const onboarding = {
   // Every channel @everyone can see. Onboarding hides public channels that aren't defaults, even from admins.
   defaultChannels: "public",
+  // Busy feeds only some want; members get them through an answer below, or Browse Channels.
+  notDefault: ["github-feed"],
   prompts: [
     {
       title: "Which classes do you play?", multi: true, required: true, // everyone gets a class-coloured name
@@ -291,7 +293,7 @@ export const onboarding = {
         ["Plugin API changes", "pingApi", "🔧", "Changes that affect plugins"],
       ],
     },
-    { title: "Do you write addons?", options: [["I write addons or plugins", "plugin", "🧩", "Get the Plugin Author role"]] },
+    { title: "Do you write addons?", options: [["I write addons or plugins", "plugin", "🧩", "Get the Plugin Author role and the GitHub feed", ["github-feed"]]] },
   ],
 };
 
