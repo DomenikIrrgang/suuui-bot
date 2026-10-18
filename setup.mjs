@@ -271,7 +271,7 @@ await step("Channel settings and order", async () => {
       const body = { permission_overwrites: overwrites(cat.overwrites, ch.overwrites) };
       if (ch.type === "announcement" && current.type === 0) body.type = 5;
       if (ch.topic && ch.type !== "voice") body.topic = resolveMentions(ch.topic);
-      if (ch.userLimit) body.user_limit = ch.userLimit;
+      if (ch.type === "voice") body.user_limit = ch.userLimit ?? 0; // 0: no limit
       if (ch.type === "forum") {
         const keep = Object.fromEntries((current.available_tags ?? []).map((t) => [t.name, t.id]));
         body.available_tags = [

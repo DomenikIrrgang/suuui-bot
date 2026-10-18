@@ -166,10 +166,10 @@ export const categories = [
     name: "🔊 ◆ VOICE ◆ 🔊", was: "◆ Voice",
     channels: [
       { name: "Lounge", type: "voice" },
-      { name: "Dungeon", type: "voice", userLimit: 5 },
-      { name: "Raid", type: "voice", userLimit: 40 },
+      { name: "Setup help", was: "Dungeon", type: "voice" }, // screen-share and get help setting SuuUI up
+      { name: "Test session", was: "Raid", type: "voice", overwrites: testersOnly }, // trying a test build together
       { name: "Dev stream", type: "stage", topic: "Live development and Q&A." },
-      // Hidden on its own: it is the one channel here whose permissions differ from the category, so never "Sync now".
+      // Test session and this one are hidden on their own, unlike the category: never "Sync now" them.
       { name: "Very secret channel", was: "Staff", type: "voice", overwrites: staffOnly },
     ],
   },
