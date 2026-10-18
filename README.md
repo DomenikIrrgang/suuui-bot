@@ -18,7 +18,7 @@ It runs once and exits; it is not an always-online bot.
 | **Rules** | The #rules post and Discord's rules screening, from one list |
 | **Onboarding** | Class (required), role, pings, Tester and Plugin Author; the welcome screen |
 | **AutoMod** | Slurs and sexual content, spam, invite links and scams, alerts to #mod-log |
-| **Webhooks** | GitHub releases to #releases; commits, pull requests and issues to #github-feed |
+| **Webhooks** | #releases, which suuui's CI posts each release to with a ping for @Release pings; commits, pull requests and issues to #github-feed |
 | **Look** | The bot's avatar and banner, the `:suuui:` emoji |
 
 ## First run

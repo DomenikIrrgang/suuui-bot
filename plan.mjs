@@ -85,7 +85,8 @@ export const categories = [
       { name: "welcome", type: "text", topic: "What SuuUI is, where to get it, and how this server works." },
       { name: "rules", type: "text", topic: "Read these before you post." },
       { name: "announcements", type: "announcement", topic: "News about SuuUI and this server." },
-      { name: "releases", type: "announcement", topic: "Every SuuUI release, posted from GitHub as it ships.", webhook: { name: "SuuUI Releases", github: ["release"] } },
+      // suuui's CI posts each release through this webhook and pings @Release pings (.github/scripts/discord-release.mjs).
+      { name: "releases", type: "announcement", topic: "Every SuuUI release, posted as it ships.", webhook: { name: "SuuUI Releases" } },
       { name: "faq", type: "text", topic: "Answers to the questions we hear most." },
     ],
   },
@@ -117,8 +118,8 @@ export const categories = [
     channels: [
       {
         name: "help", type: "forum", requireTag: true,
-        topic: "One question per post, with a tag. Tell us what you tried and paste `/suu version`. A screenshot helps with anything visual. When it's solved, say so and a moderator tags it.",
-        tags: ["Installation", "Settings & profiles", ...areaTags, "Other"], modTags: ["Solved"],
+        topic: "One question per post, with a tag. Tell us what you tried and paste `/suu version`. A screenshot helps with anything visual. When it's solved, add the Solved tag.",
+        tags: ["Installation", "Settings & profiles", ...areaTags, "Other", "Solved"], // Solved: whoever asked sets it
       },
       {
         name: "bug-reports", type: "forum", requireTag: true,
