@@ -77,6 +77,33 @@ node setup.mjs --apply --profile
 
 Discord can't replace an emoji's picture: delete the emoji in Server Settings, then run the setup again.
 
+## Set by hand
+
+Discord doesn't let bots change these, so they live in Server Settings, not in the plan.
+
+- **Safety Setup:** verification Highest (a verified phone number), 2FA required for moderator actions, raid and DM
+  spam alerts. The plan keeps the verification level at Highest.
+- **Server Guide** (Server Settings → Onboarding → Server Guide), with the server owner as the welcome message's author:
+
+  > Hi, and welcome! SuuUI is a full interface replacement for WoW Forever. It's still in beta, so your feedback
+  > really shapes it. Have a look at the FAQ, show us your setup, and if something breaks, tell us. Enjoy!
+
+  | New member to-do | Channel | Description | Emoji | Done when |
+  |---|---|---|---|---|
+  | Read the FAQ | #faq | Installing, settings, and the questions we hear most | 📖 | they open it |
+  | Share your setup | #ui-showcase | Post a screenshot of your SuuUI | ✨ | they open it |
+  | Stuck? Ask in #help | #help | One question per post, with what you tried | ❓ | they open it |
+  | Found a bug? Report it | #bug-reports | With /suu version and /suu errors | 🐞 | they open it |
+  | Say hi | #general | Tell us what you play | 👋 | they post |
+
+  | Resource page | Channel | Description | Emoji |
+  |---|---|---|---|
+  | Get SuuUI | #welcome | Where to download it and how to start | 👋 |
+  | FAQ | #faq | Answers to the questions we hear most | 📖 |
+  | Known issues | #known-issues | Confirmed bugs and their workarounds | 🩹 |
+  | What's new | #releases | Every release as it ships | 📦 |
+  | Profiles and presets | #profiles | Setups other players share | 🗂️ |
+
 ## Good to know
 
 - **Rules screening** uses an endpoint Discord's own client uses but doesn't document. If it stops working, edit the
