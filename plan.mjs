@@ -200,16 +200,20 @@ export const screening = {
 export const messages = {
   welcome: [[
     {
-      title: "Welcome to SuuUI",
+      title: "Welcome to SuuUI! 👋",
       description:
-        "SuuUI replaces the default interface of **World of Warcraft Forever** with one consistent UI. " +
-        "One design system, every frame rebuilt from scratch, and nothing on screen that doesn't earn its place.\n\n:suuui: *Quiet until it matters.*",
+        "Hey, we're really glad you're here! :suuui:\n\n" +
+        "SuuUI is a full interface replacement for **World of Warcraft Forever**, made with a lot of care for how the game " +
+        "feels to play. It's still in beta, so you're early, and what you tell us genuinely shapes where it goes next.\n\n" +
+        "Whether you've just installed it, you're still deciding, or you've been fine-tuning your setup for weeks: make yourself at home.",
       fields: [
-        { name: "Get SuuUI", value: `[CurseForge](${links.curseforge}) · [Wago](${links.wago}) · [GitHub Releases](${links.releases})\nThen type \`/suu\` in game to open the settings.` },
-        { name: "Find your way", value: "<#help> questions\n<#bug-reports> something broke\n<#suggestions> ideas\n<#ui-showcase> show your setup\n<#releases> every new version" },
-        { name: "Pick your roles", value: "Open **Channels & Roles** at the top of the channel list to pick your class, your role, and the pings you want. Pick **Tester** to try builds before they ship." },
-        { name: "Links", value: `[suuui.dev](${links.site}) · [GitHub](${links.github}) · [Plugin API](${links.api})` },
+        { name: "🌱 New here?", value: `Grab SuuUI from [CurseForge](${links.curseforge}) · [Wago](${links.wago}) · [GitHub](${links.releases}), then type \`/suu\` in game. Stuck on anything? Ask in <#help>. No question is too small.` },
+        { name: "💬 Come say hi", value: "Tell us what you play in <#general>, and show off your setup in <#ui-showcase>. We love seeing them!" },
+        { name: "🎨 Make it yours", value: "Pick your class, role and pings under **Channels & Roles**. Want to try new builds before anyone else? Become a **Tester**." },
+        { name: "🐞 Something broken?", value: "Let us know in <#bug-reports> with `/suu version` and `/suu errors`. Every report helps." },
+        { name: "🔗 Links", value: `[suuui.dev](${links.site}) · [GitHub](${links.github}) · [Plugin API](${links.api})` },
       ],
+      footer: { text: "Quiet until it matters." },
     },
   ]],
   rules: [[
