@@ -108,6 +108,8 @@ export const categories = [
         topic: "One idea per post. Start with the problem you have, then your idea. Search first: if it exists, add your 👍 and your case there.",
         tags: [...areaTags, "Other"], modTags: ["Under review", "Planned", "In a test build", "Shipped", "Not planned"],
       },
+      // The one channel not about SuuUI, so off-topic talk has a place outside #general and #help.
+      { name: "off-topic", type: "text", topic: "Anything else. Keep the rules in mind." },
     ],
   },
   {
@@ -152,14 +154,6 @@ export const categories = [
       { name: "wowlua", type: "text", topic: `SuuUI is built with wowlua: ${links.wowlua}` },
       { name: "contributing", type: "text", topic: `Working on SuuUI itself: ${links.github}` },
       { name: "github-feed", type: "text", overwrites: readOnly, topic: "Commits, pull requests and issues from GitHub.", webhook: { name: "GitHub", github: ["push", "pull_request", "issues"] } },
-    ],
-  },
-  {
-    name: "🌐 ◆ AZEROTH ◆ 🌐",
-    channels: [
-      { name: "wow-forever", type: "text", topic: "WoW Forever itself: patches, classes, dungeons, raids." },
-      { name: "looking-for-group", type: "text", topic: "Find a group. Say your realm, faction, level and role." },
-      { name: "off-topic", type: "text", topic: "Anything else. Keep the rules in mind." },
     ],
   },
   {
@@ -277,7 +271,7 @@ export const automod = {
 // Discord's onboarding: the default channels new members see, and the questions that hand out roles.
 export const onboarding = {
   defaultChannels: ["welcome", "rules", "announcements", "releases", "faq", "general", "ui-showcase", "help",
-    "bug-reports", "suggestions", "wow-forever", "looking-for-group", "off-topic"],
+    "bug-reports", "suggestions", "off-topic"],
   prompts: [
     {
       title: "Which classes do you play?", multi: true, required: true, // everyone gets a class-coloured name

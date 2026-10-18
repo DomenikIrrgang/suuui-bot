@@ -12,7 +12,7 @@ It runs once and exits; it is not an always-online bot.
 |---|---|
 | **Server** | Name, icon, Community, verification and media filter, description |
 | **Roles** | Developer, Moderator, Contributor; the nine classes in the game's class colours; Tester, Plugin Author; Tank, Healer, DPS; ping roles. Colours come from the SuuUI design system |
-| **Channels** | Eight categories: Information, Community, Support, Testing (Testers only), Development, Azeroth, Voice, Staff (hidden) |
+| **Channels** | Seven categories, all about SuuUI: Information, Community, Support, Testing (Testers only), Development, Voice, Staff (hidden) |
 | **Forums** | #ui-showcase, #profiles, #suggestions, #help, #bug-reports, and #test-reports for test builds, with tags and posting guidelines |
 | **Posts** | #welcome, #rules, #faq, #known-issues, #test-builds; edited in place on every run |
 | **Rules** | The #rules post and Discord's rules screening, from one list |
