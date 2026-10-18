@@ -169,6 +169,8 @@ export const categories = [
       { name: "Dungeon", type: "voice", userLimit: 5 },
       { name: "Raid", type: "voice", userLimit: 40 },
       { name: "Dev stream", type: "stage", topic: "Live development and Q&A." },
+      // Hidden on its own: it is the one channel here whose permissions differ from the category, so never "Sync now".
+      { name: "Staff", type: "voice", overwrites: staffOnly },
     ],
   },
   {
@@ -177,7 +179,6 @@ export const categories = [
       { name: "mod-chat", type: "text", topic: "Moderators and developers." },
       { name: "mod-log", type: "text", topic: "AutoMod alerts, joins and Discord safety alerts." },
       { name: "mod-updates", type: "text", topic: "Updates from Discord for community servers." },
-      { name: "Staff", type: "voice" },
     ],
   },
 ];
