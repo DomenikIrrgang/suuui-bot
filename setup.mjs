@@ -270,6 +270,7 @@ await step("Channel settings and order", async () => {
       const current = channels.find((c) => c.id === id);
       const body = { permission_overwrites: overwrites(cat.overwrites, ch.overwrites) };
       if (ch.type === "announcement" && current.type === 0) body.type = 5;
+      if (ch.type === "text" && current.type === 5) body.type = 0;
       if (ch.topic && ch.type !== "voice") body.topic = resolveMentions(ch.topic);
       if (ch.type === "voice") body.user_limit = ch.userLimit ?? 0; // 0: no limit
       if (ch.type === "forum") {
