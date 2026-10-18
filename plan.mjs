@@ -168,7 +168,7 @@ export const categories = [
     ],
   },
   {
-    name: "⛔ ◆ STAFF ◆ ⛔", overwrites: staffOnly,
+    name: "🤫 ◆ VERY SECRET AREA ◆ 🤫", was: "⛔ ◆ STAFF ◆ ⛔", overwrites: staffOnly,
     channels: [
       { name: "mod-chat", type: "text", topic: "Moderators and developers." },
       { name: "mod-log", type: "text", topic: "AutoMod alerts, joins and Discord safety alerts." },
