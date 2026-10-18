@@ -272,8 +272,8 @@ export const automod = {
 
 // Discord's onboarding: the default channels new members see, and the questions that hand out roles.
 export const onboarding = {
-  defaultChannels: ["welcome", "rules", "announcements", "releases", "faq", "general", "ui-showcase", "help",
-    "bug-reports", "suggestions", "off-topic"],
+  // Every channel @everyone can see. Onboarding hides public channels that aren't defaults, even from admins.
+  defaultChannels: "public",
   prompts: [
     {
       title: "Which classes do you play?", multi: true, required: true, // everyone gets a class-coloured name

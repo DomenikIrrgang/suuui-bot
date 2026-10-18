@@ -377,6 +377,15 @@ await step("AutoMod", async () => {
   }
 });
 
+// "public": every planned channel whose category and own overwrites leave @everyone able to see it.
+const defaultChannelIds = () => {
+  const hidden = (o) => o?.everyone?.deny?.includes("VIEW_CHANNEL");
+  const names = plan.onboarding.defaultChannels === "public"
+    ? allChannels().filter((ch) => !hidden(ch.category.overwrites) && !hidden(ch.overwrites)).map((ch) => ch.name)
+    : plan.onboarding.defaultChannels;
+  return names.map((n) => channelIds[n]).filter(Boolean);
+};
+
 await step("Onboarding", async () => {
   // Onboarding objects need snowflake-shaped ids; Discord keeps them or assigns its own.
   let n = 0;
@@ -389,7 +398,7 @@ await step("Onboarding", async () => {
     })),
   }));
   await api("PUT", `/guilds/${guildId}/onboarding`, {
-    prompts, default_channel_ids: plan.onboarding.defaultChannels.map((c) => channelIds[c]).filter(Boolean), enabled: true, mode: 0,
+    prompts, default_channel_ids: defaultChannelIds(), enabled: true, mode: 0,
   });
   log(`  ${prompts.length} questions`);
 });
