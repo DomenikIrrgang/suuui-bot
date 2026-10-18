@@ -20,7 +20,7 @@ export const guild = {
   botNickname: "SuuUI",
   botAvatar: "assets/avatar-ready.png", // the mark with arcane's "ready" glow (render-images.mjs)
   botBanner: "assets/banner.png", // the crest and the tagline
-  verificationLevel: 2, // medium: account older than 5 minutes
+  verificationLevel: 4, // highest: a verified phone number
   explicitContentFilter: 2, // scan everyone's media
   defaultNotifications: 1, // mentions only
   rulesChannel: "rules",
