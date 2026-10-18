@@ -154,7 +154,7 @@ export const categories = [
       { name: "plugins-and-api", type: "text", topic: `Writing plugins for SuuUI. API: ${links.api}` },
       { name: "wowlua", type: "text", topic: `SuuUI is built with wowlua: ${links.wowlua}` },
       { name: "contributing", type: "text", topic: `Working on SuuUI itself: ${links.github}` },
-      { name: "github-feed", type: "text", overwrites: readOnly, topic: "Commits, pull requests and issues from GitHub.", webhook: { name: "GitHub", github: ["push", "pull_request", "issues"] } },
+      { name: "github-feed", type: "text", overwrites: readOnly, topic: "Commits, pull requests and issues from GitHub.", webhook: { name: "GitHub", avatar: "assets/avatar-ready.png", github: ["push", "pull_request", "issues"] } },
     ],
   },
   {
