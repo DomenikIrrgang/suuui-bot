@@ -170,7 +170,7 @@ export const categories = [
       { name: "Raid", type: "voice", userLimit: 40 },
       { name: "Dev stream", type: "stage", topic: "Live development and Q&A." },
       // Hidden on its own: it is the one channel here whose permissions differ from the category, so never "Sync now".
-      { name: "Staff", type: "voice", overwrites: staffOnly },
+      { name: "Very secret channel", was: "Staff", type: "voice", overwrites: staffOnly },
     ],
   },
   {
