@@ -81,8 +81,8 @@ Discord can't replace an emoji's picture: delete the emoji in Server Settings, t
 
 - **Rules screening** uses an endpoint Discord's own client uses but doesn't document. If it stops working, edit the
   rules under Server Settings → Safety Setup.
-- **Mass-mention AutoMod:** Community servers get Discord's own rule for this, which the API can't edit, so the plan
-  leaves it as it is.
+- **Mass-mention AutoMod:** Community servers get Discord's own "Block Mention Spam" rule. The API can only edit it
+  once it has been saved in Server Settings → AutoMod; after that the plan keeps it at 8 mentions, staff exempt.
 - **Profile changes** are rate-limited hard, so the avatar and banner only go up when the bot has none or with
   `--profile`.
 

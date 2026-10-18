@@ -260,7 +260,8 @@ export const automod = {
   rules: [
     { name: "Slurs and sexual content", trigger: "keyword_preset", presets: [2, 3] },
     { name: "Spam", trigger: "spam" },
-    { name: "Mass mentions", trigger: "mention_spam", mentionLimit: 6, raidProtection: true, timeoutSeconds: 600 },
+    // Discord made this one with Community; saved once in Server Settings, the API can edit it.
+    { name: "Block Mention Spam", trigger: "mention_spam", mentionLimit: 8, raidProtection: true },
     {
       name: "Invites and scams", trigger: "keyword", timeoutSeconds: 60,
       regex: ["discord(?:\\.gg|app\\.com/invite|\\.com/invite)/\\S+"],
