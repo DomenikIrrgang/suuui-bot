@@ -146,13 +146,14 @@ if (!apply) {
   for (const r of plan.roles) log(`  ${roles.some((x) => x.name === r.name) ? "keep  " : "create"} ${r.name}`);
   log("\nChannels:");
   for (const cat of plan.categories) {
-    log(`  ${channels.some((c) => c.type === 4 && sameName(c.name, cat.name)) ? "keep  " : "create"} [${cat.name}]`);
+    const hasCategory = (name) => channels.some((c) => c.type === 4 && sameName(c.name, name));
+    log(`  ${hasCategory(cat.name) ? "keep  " : cat.was && hasCategory(cat.was) ? `rename [${cat.was}] →` : "create"} [${cat.name}]`);
     for (const ch of cat.channels) {
       const status = findChannel(ch.name, ch.type) ? "keep  " : ch.was && findChannel(ch.was, ch.type) ? `rename ${ch.was} →` : "create";
       log(`    ${status} ${ch.type === "voice" || ch.type === "stage" ? "🔊" : "#"}${ch.name} (${ch.type})`);
     }
   }
-  const planned = new Set([...plan.categories.map((c) => c.name.toLowerCase()),
+  const planned = new Set([...plan.categories.flatMap((c) => [c.name, c.was].filter(Boolean).map((n) => n.toLowerCase())),
     ...allChannels().flatMap((c) => [c.name, c.was].filter(Boolean).map((n) => n.toLowerCase()))]);
   const extra = channels.filter((c) => !planned.has(c.name.toLowerCase()));
   if (extra.length) log(`\nNot in the plan${prune ? " (deleted with --prune)" : " (kept; --prune deletes them)"}: ${extra.map((c) => c.name).join(", ")}`);
@@ -197,7 +198,13 @@ await step("Roles", async () => {
 
 async function ensureChannels(filter) {
   for (const cat of plan.categories) {
-    let parent = channels.find((c) => c.type === 4 && sameName(c.name, cat.name));
+    const findCategory = (name) => channels.find((c) => c.type === 4 && sameName(c.name, name));
+    let parent = findCategory(cat.name);
+    const old = !parent && cat.was && findCategory(cat.was);
+    if (old) {
+      parent = Object.assign(old, await api("PATCH", `/channels/${old.id}`, { name: cat.name }));
+      log(`  renamed [${cat.was}] → [${cat.name}]`);
+    }
     if (!parent) {
       parent = await api("POST", `/guilds/${guildId}/channels`, { name: cat.name, type: 4, permission_overwrites: overwrites(cat.overwrites) });
       channels.push(parent);

@@ -146,7 +146,7 @@ export const categories = [
     ],
   },
   {
-    name: "◆ Development",
+    name: "💻 ◆ DEVELOPMENT ◆ 💻", was: "◆ Development",
     channels: [
       { name: "plugins-and-api", type: "text", topic: `Writing plugins for SuuUI. API: ${links.api}` },
       { name: "wowlua", type: "text", topic: `SuuUI is built with wowlua: ${links.wowlua}` },
@@ -163,7 +163,7 @@ export const categories = [
     ],
   },
   {
-    name: "◆ Voice",
+    name: "🔊 ◆ VOICE ◆ 🔊", was: "◆ Voice",
     channels: [
       { name: "Lounge", type: "voice" },
       { name: "Dungeon", type: "voice", userLimit: 5 },
