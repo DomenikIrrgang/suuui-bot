@@ -4,7 +4,7 @@
 //   node setup.mjs --apply    make the changes
 //   --prune                   also delete channels the plan doesn't have (Discord's default ones)
 //   --no-github               skip adding the GitHub webhooks to the repository
-//   --profile                 upload the bot's avatar and banner again (otherwise only when it has none)
+//   --profile                 upload the bot's avatar and banner, and the webhooks' pictures, again
 //
 // Settings come from the environment (DISCORD_TOKEN, GUILD_ID, and GITHUB_TOKEN for the repository webhooks), or from
 // a .env file next to this file for whatever the environment doesn't set. Safe to run again: it finds what exists by name.
@@ -416,12 +416,14 @@ await step("Welcome screen", async () => {
 });
 
 await step("Webhooks", async () => {
-  const avatar = iconDataUri();
   for (const ch of allChannels().filter((c) => c.webhook)) {
     const id = channelIds[ch.name];
+    const avatar = ch.webhook.avatar ? pngDataUri(ch.webhook.avatar) : iconDataUri();
     const hooks = await api("GET", `/channels/${id}/webhooks`);
-    const hook = hooks.find((h) => h.name === ch.webhook.name) ?? await api("POST", `/channels/${id}/webhooks`, { name: ch.webhook.name, avatar });
-    log(`  #${ch.name}: ${ch.webhook.name}`);
+    let hook = hooks.find((h) => h.name === ch.webhook.name);
+    if (!hook) hook = await api("POST", `/channels/${id}/webhooks`, { name: ch.webhook.name, avatar });
+    else if (args.has("--profile")) await api("PATCH", `/webhooks/${hook.id}`, { avatar });
+    log(`  #${ch.name}: ${ch.webhook.name}${args.has("--profile") ? " (picture uploaded)" : ""}`);
     if (!ch.webhook.github) continue;
     if (!withGithub) { log(`    GitHub hook skipped${githubToken ? "" : " (no GITHUB_TOKEN)"}`); continue; }
     // GitHub's own webhook format, which Discord reads at the /github endpoint.

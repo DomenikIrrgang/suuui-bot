@@ -37,7 +37,7 @@ It runs once and exits; it is not an always-online bot.
 node setup.mjs                  # dry run: shows what would change, changes nothing
 node setup.mjs --apply          # make the server match plan.mjs
 node setup.mjs --apply --prune  # also delete channels the plan doesn't have
-node setup.mjs --apply --profile  # upload the bot's avatar and banner again
+node setup.mjs --apply --profile  # upload the bot's avatar and banner, and the webhooks' pictures, again
 node setup.mjs --apply --no-github  # leave the GitHub repository's webhooks alone
 ```
 
